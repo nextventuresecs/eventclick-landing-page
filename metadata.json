@@ -1,0 +1,6 @@
+{
+  "name": "Eventclick",
+  "description": "Real-time event verification, live streaming, and time-bound photo proof platform for organizations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

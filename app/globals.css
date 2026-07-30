@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap');
+@import "tailwindcss";
+
+:root {
+  --font-poppins: 'Poppins', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+
+  /* Brand Colors */
+  --color-primary: #402291;
+  --color-secondary: #3160B7;
+  --color-accent: #8C6FCF;
+  --color-ink: #28226E;
+  --color-bg: #F5F3FC;
+  --color-surface: #FFFFFF;
+
+  /* Neutrals */
+  --color-gray-50: #F8F9FC;
+  --color-gray-100: #F1F5F9;
+  --color-gray-200: #E2E5ED;
+  --color-gray-300: #CBD0DC;
+  --color-gray-400: #98A2B3;
+  --color-gray-500: #667085;
+  --color-gray-600: #475467;
+  --color-gray-700: #1D2939;
+  --color-gray-800: #0F172A;
+
+  /* Status Colors */
+  --status-live-text: #166534;
+  --status-live-bg: #DCFCE7;
+  --status-scheduled-text: #0C447C;
+  --status-scheduled-bg: #E6F1FB;
+  --status-ended-text: #475467;
+  --status-ended-bg: #F1F5F9;
+  --status-cancelled-text: #991B1B;
+  --status-cancelled-bg: #FEE2E2;
+
+  /* Shadows */
+  --shadow-rest: 0 1px 2px rgba(16, 24, 40, 0.04), 0 1px 3px rgba(16, 24, 40, 0.08);
+  --shadow-hover: 0 4px 6px rgba(16, 24, 40, 0.06), 0 2px 8px rgba(16, 24, 40, 0.08);
+  --shadow-raised: 0 10px 15px rgba(16, 24, 40, 0.08), 0 4px 12px rgba(16, 24, 40, 0.06);
+}
+
+body {
+  font-family: var(--font-inter);
+  background-color: var(--color-bg);
+  color: var(--color-gray-800);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: var(--font-poppins);
+}
+
+/* Custom Utilities */
+.bg-canvas {
+  background-color: var(--color-bg);
+}
+
+.bg-surface {
+  background-color: var(--color-surface);
+}
+
+.border-surface {
+  border-color: var(--color-gray-200);
+}
+
+.card-base {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-gray-200);
+  border-radius: 16px;
+  box-shadow: var(--shadow-rest);
+  transition: box-shadow 150ms ease-out, transform 150ms ease-out, border-color 150ms ease-out;
+}
+
+.card-base:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+.card-raised {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-gray-200);
+  border-radius: 16px;
+  box-shadow: var(--shadow-raised);
+}
+
+.btn-gradient {
+  background: linear-gradient(135deg, #402291 0%, #3160B7 100%);
+  color: #FFFFFF;
+  transition: opacity 150ms ease-out, transform 150ms ease-out;
+}
+
+.btn-gradient:hover {
+  opacity: 0.95;
+  transform: translateY(-1px);
+}
+
+.btn-gradient:active {
+  transform: translateY(0);
+}
+
+.hero-glow {
+  background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(64, 34, 145, 0.12), transparent 70%);
+}
+
+.focus-ring:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(64, 34, 145, 0.25);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Scrollbar customization */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-gray-300);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gray-400);
+}
+
+/* FAQ Scroller Animations & Utility Classes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scroll-horizontal {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-horizontal-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-scroll-horizontal {
+  animation: scroll-horizontal var(--scroll-duration, 40s) linear infinite;
+}
+
+.animate-scroll-horizontal-reverse {
+  animation: scroll-horizontal-reverse var(--scroll-duration, 40s) linear infinite;
+}
+
+.animate-scroll-horizontal:hover,
+.animate-scroll-horizontal-reverse:hover {
+  animation-play-state: paused;
+}
+
+.scroller-mask {
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+
