@@ -18,15 +18,12 @@ import {
   Sparkles
 } from 'lucide-react';
 import { motion } from 'framer-motion';
-import PolicyModal from '@/components/PolicyModal';
 
 interface FooterProps {
   onOpenDemo?: () => void;
 }
 
 export default function Footer({ onOpenDemo }: FooterProps) {
-  const [activePolicy, setActivePolicy] = useState<'privacy' | 'terms' | null>(null);
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -158,34 +155,41 @@ export default function Footer({ onOpenDemo }: FooterProps) {
             </h4>
             <ul className="space-y-2 text-[#94A3B8]">
               <li>
-                <button 
-                  onClick={() => setActivePolicy('privacy')}
-                  className="hover:text-white transition-colors text-left inline-flex items-center gap-1.5"
-                >
+                <Link href="/privacy" className="hover:text-white transition-colors inline-flex items-center gap-1.5">
                   <span>Privacy Policy</span>
                   <ExternalLink className="w-3 h-3 text-[#64748B]" />
-                </button>
+                </Link>
               </li>
               <li>
-                <button 
-                  onClick={() => setActivePolicy('terms')}
-                  className="hover:text-white transition-colors text-left inline-flex items-center gap-1.5"
-                >
+                <Link href="/terms" className="hover:text-white transition-colors inline-flex items-center gap-1.5">
                   <span>Terms of Service</span>
                   <ExternalLink className="w-3 h-3 text-[#64748B]" />
-                </button>
-              </li>
-              <li>
-                <Link href="/privacy" className="hover:text-white transition-colors text-[#A5B4FC]">
-                  GDPR & Data Framework Page
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="hover:text-white transition-colors text-[#A5B4FC]">
-                  SaaS Agreement Page
+                <Link href="/gdpr-dpa" className="hover:text-white transition-colors inline-flex items-center gap-1.5">
+                  <span>GDPR & Data Framework</span>
+                  <ExternalLink className="w-3 h-3 text-[#64748B]" />
                 </Link>
               </li>
-              <li><Link href="/#security" className="hover:text-white transition-colors">Zero-Trust Security Shield</Link></li>
+              <li>
+                <Link href="/saas-agreement" className="hover:text-white transition-colors inline-flex items-center gap-1.5">
+                  <span>SaaS Agreement</span>
+                  <ExternalLink className="w-3 h-3 text-[#64748B]" />
+                </Link>
+              </li>
+              <li>
+                <Link href="/sla" className="hover:text-white transition-colors inline-flex items-center gap-1.5">
+                  <span>Service Level Agreement</span>
+                  <ExternalLink className="w-3 h-3 text-[#64748B]" />
+                </Link>
+              </li>
+              <li>
+                <Link href="/cookies" className="hover:text-white transition-colors inline-flex items-center gap-1.5">
+                  <span>Cookie Policy</span>
+                  <ExternalLink className="w-3 h-3 text-[#64748B]" />
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -218,12 +222,6 @@ export default function Footer({ onOpenDemo }: FooterProps) {
 
       </div>
 
-      {/* Policy Modal Overlay */}
-      <PolicyModal 
-        isOpen={activePolicy !== null}
-        type={activePolicy}
-        onClose={() => setActivePolicy(null)}
-      />
     </footer>
   );
 }

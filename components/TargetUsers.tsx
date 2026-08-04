@@ -122,7 +122,7 @@ export default function TargetUsers() {
 
           {/* iOS Style Segmented Control for Mobile/Tablet */}
           <div className="pt-6 flex justify-center md:hidden">
-            <div className="flex items-center p-1.5 bg-black/[0.04] rounded-full relative overflow-x-auto max-w-full">
+            <div className="flex items-center p-1.5 bg-black/[0.04] rounded-full relative overflow-x-auto max-w-full [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
               {roles.map((r) => (
                 <button
                   key={r.id}
@@ -166,9 +166,9 @@ export default function TargetUsers() {
                   damping: 20
                 }}
                 onClick={() => setSelectedRole(r.id)}
-                className={`relative bg-white rounded-[32px] p-8 cursor-pointer flex flex-col justify-between transition-all duration-500 overflow-hidden group border ${
+                className={`${!isSelected ? 'hidden md:flex' : 'flex'} relative bg-white rounded-[32px] p-8 cursor-pointer flex-col justify-between transition-all duration-500 overflow-hidden group border ${
                   isSelected
-                    ? 'border-transparent shadow-[0_20px_40px_rgb(0,0,0,0.08)] scale-[1.02]'
+                    ? 'border-transparent shadow-[0_20px_40px_rgb(0,0,0,0.08)] md:scale-[1.02]'
                     : 'border-black/[0.03] shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.06)]'
                 }`}
               >
@@ -257,7 +257,7 @@ export default function TargetUsers() {
             </h3>
           </div>
 
-          <div className="overflow-x-auto pb-6">
+          <div className="overflow-x-auto pb-6 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             <table className="w-full text-left min-w-[700px]">
               <thead>
                 <tr>

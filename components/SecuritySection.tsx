@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { 
   Shield, 
   KeyRound, 
@@ -12,12 +12,23 @@ import {
   CheckCircle2,
   EyeOff,
   Building2,
-  FileText
+  FileText,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function SecuritySection() {
   const [activeTab, setActiveTab] = useState<'session' | 'privacy' | 'audit'>('session');
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      const { current } = scrollContainerRef;
+      const scrollAmount = direction === 'left' ? -340 : 340;
+      current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
 
   const trustPillars = [
     {
@@ -103,25 +114,29 @@ export default function SecuritySection() {
           </p>
         </motion.div>
 
-        {/* Security Cards Grid (Bento Style) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-24">
-          {trustPillars.map((item, index) => {
-            const Icon = item.icon;
-            return (
-              <motion.div 
-                key={index}
-                initial={{ opacity: 0, y: 30, scale: 0.98 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ 
-                  duration: 0.5, 
-                  delay: index * 0.1,
-                  type: 'spring',
-                  stiffness: 100,
-                  damping: 20
-                }}
-                className="bg-white rounded-[28px] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-black/[0.03] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-shadow duration-500 flex flex-col h-full group"
-              >
+        {/* Security Cards Horizontal Scroll (Apple Style) */}
+        <div className="relative mb-24">
+          <div 
+            ref={scrollContainerRef}
+            className="flex gap-6 overflow-x-auto pb-12 pt-4 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+          >
+            {trustPillars.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <motion.div 
+                  key={index}
+                  initial={{ opacity: 0, y: 30, scale: 0.98 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ 
+                    duration: 0.5, 
+                    delay: index * 0.1,
+                    type: 'spring',
+                    stiffness: 100,
+                    damping: 20
+                  }}
+                  className="bg-white rounded-[28px] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-black/[0.03] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-shadow duration-500 flex flex-col group min-w-[300px] sm:min-w-[340px] max-w-[360px] flex-shrink-0 snap-start"
+                >
                 <div className="w-14 h-14 rounded-2xl bg-[#F5F5F7] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 ease-out">
                   <Icon className="w-6 h-6 text-[#1D1D1F]" />
                 </div>
@@ -146,6 +161,23 @@ export default function SecuritySection() {
               </motion.div>
             );
           })}
+          </div>
+
+          {/* Navigation Buttons - Right Bottom */}
+          <div className="absolute right-0 bottom-0 flex gap-3 pr-2">
+            <button 
+              onClick={() => scroll('left')}
+              className="p-3 rounded-full bg-white border border-black/[0.04] shadow-sm hover:shadow-[0_8px_20px_rgb(0,0,0,0.08)] transition-all text-[#1D1D1F] hover:scale-105 focus:outline-none"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button 
+              onClick={() => scroll('right')}
+              className="p-3 rounded-full bg-white border border-black/[0.04] shadow-sm hover:shadow-[0_8px_20px_rgb(0,0,0,0.08)] transition-all text-[#1D1D1F] hover:scale-105 focus:outline-none"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
         </div>
 
         {/* Interactive Security & Compliance Inspector */}

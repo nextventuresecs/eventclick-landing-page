@@ -1,5 +1,7 @@
 import type {Metadata} from 'next';
 import './globals.css';
+import GoogleAnalytics from '@/components/GoogleAnalytics';
+import CookieBanner from '@/components/CookieBanner';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://eventclick.live'),
@@ -24,7 +26,10 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang="en" className="scroll-smooth">
       <body suppressHydrationWarning className="bg-[#F5F3FC] text-[#1D2939] antialiased selection:bg-[#8C6FCF]/20 selection:text-[#402291]">
+        {/* Replace G-XXXXXXXXXX with your actual Google Analytics Measurement ID */}
+        <GoogleAnalytics gaId="G-P35Z6ENJPB" />
         {children}
+        <CookieBanner />
       </body>
     </html>
   );

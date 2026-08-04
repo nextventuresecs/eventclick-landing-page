@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import logo from '@/assets/only_icon.png';
+import Link from 'next/link';
 import { Menu, X, ArrowRight, LogIn, Sparkles, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -11,11 +12,11 @@ interface NavbarProps {
 }
 
 const NAV_LINKS = [
-  { name: 'Features', href: '#features' },
-  { name: 'How It Works', href: '#how-it-works' },
-  { name: 'Security & Trust', href: '#security' },
-  { name: 'Use Cases', href: '#roles' },
-  { name: 'FAQ', href: '#faq' },
+  { name: 'Features', href: '/#features' },
+  { name: 'How It Works', href: '/#how-it-works' },
+  { name: 'Security & Trust', href: '/#security' },
+  { name: 'Use Cases', href: '/#roles' },
+  { name: 'FAQ', href: '/#faq' },
 ];
 
 export default function Navbar({ onOpenDemo }: NavbarProps) {
@@ -40,7 +41,9 @@ export default function Navbar({ onOpenDemo }: NavbarProps) {
       className="fixed top-0 z-50 w-full px-4 sm:px-6 py-4 transition-all duration-500 pointer-events-none"
     >
       <div
-        className={`pointer-events-auto max-w-6xl mx-auto rounded-full transition-all duration-500 ${
+        className={`pointer-events-auto max-w-6xl mx-auto transition-all duration-500 ${
+          mobileMenuOpen ? 'rounded-[24px]' : 'rounded-[40px]'
+        } ${
           scrolled
             ? 'bg-white/70 backdrop-blur-2xl border border-black/[0.05] shadow-[0_8px_30px_rgb(0,0,0,0.08)] py-2 sm:py-2.5 px-4 sm:px-6'
             : 'bg-white/40 backdrop-blur-lg border border-white/60 shadow-sm py-3 px-5 sm:px-8'
@@ -48,8 +51,8 @@ export default function Navbar({ onOpenDemo }: NavbarProps) {
       >
         <div className="flex items-center justify-between">
           {/* Brand Lockup */}
-          <a
-            href="#"
+          <Link
+            href="/"
             className="flex items-center gap-2 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#402291] rounded-xl p-1 transition-opacity hover:opacity-80"
           >
             <div className="w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center">
@@ -69,7 +72,7 @@ export default function Navbar({ onOpenDemo }: NavbarProps) {
                 click
               </span>
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Navigation Links */}
           <nav
@@ -98,13 +101,13 @@ export default function Navbar({ onOpenDemo }: NavbarProps) {
 
           {/* Desktop Right Action Area */}
           <div className="hidden md:flex items-center gap-2.5">
-            <button
-              onClick={onOpenDemo}
+            <Link
+              href="https://app.eventclick.live/"
               className="px-3.5 py-2 text-[13.5px] font-semibold text-[#402291] hover:text-[#28226E] hover:bg-[#402291]/8 rounded-xl transition-all flex items-center gap-1.5 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#402291]"
             >
               <LogIn className="w-4 h-4 text-[#402291]" />
               <span>Log in</span>
-            </button>
+            </Link>
 
             <button
               onClick={onOpenDemo}

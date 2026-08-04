@@ -246,7 +246,7 @@ export default function HowItWorks() {
     <section id="how-it-works" className="relative py-24 sm:py-32 bg-[#F5F5F7] overflow-hidden">
       {/* Animated Brand Color Background Blob */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 w-[600px] sm:w-[800px] h-[600px] sm:h-[800px]">
+        <div className="absolute  right-0 translate-y-1/2 w-[600px] sm:w-[800px] h-[600px] sm:h-[800px]">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeStep}
@@ -294,8 +294,18 @@ export default function HowItWorks() {
                 const Icon = step.icon;
                 
                 return (
+                  <React.Fragment key={step.id}>
+                  {isActive && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="lg:hidden overflow-hidden"
+                    >
+                      <div className="pb-1">{step.mockup}</div>
+                    </motion.div>
+                  )}
                   <button
-                    key={step.id}
                     onClick={() => {
                       setActiveStep(idx);
                       setIsAutoPlaying(false);
@@ -309,7 +319,7 @@ export default function HowItWorks() {
                     {isActive && (
                       <motion.div 
                         layoutId="activeStepIndicator"
-                        className="absolute inset-y-0 left-0 w-1.5 bg-gradient-to-b"
+                        className="absolute inset-y-0 left-0 w-1.5  bg-gradient-to-b"
                         style={{ backgroundImage: `linear-gradient(to bottom, ${step.colorStart}, ${step.colorEnd})` }}
                         transition={{ type: "spring", stiffness: 300, damping: 30 }}
                       />
@@ -347,6 +357,7 @@ export default function HowItWorks() {
                       )}
                     </div>
                   </button>
+                  </React.Fragment>
                 );
               })}
             </div>
@@ -365,7 +376,7 @@ export default function HowItWorks() {
           </div>
 
           {/* Right: Mockup Display */}
-          <div className="order-1 lg:order-2 w-full max-w-[500px] mx-auto lg:mx-0 h-[450px] sm:h-[550px] flex items-center justify-center relative">
+          <div className="hidden lg:flex lg:order-2 w-full max-w-[500px] mx-auto lg:mx-0 h-[450px] sm:h-[550px] items-center justify-center relative">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeStep}

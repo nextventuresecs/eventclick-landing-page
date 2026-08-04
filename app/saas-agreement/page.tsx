@@ -1,10 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { ShieldCheck, ArrowLeft, FileText, Scale, CheckCircle2, AlertCircle, Building2, Lock, ExternalLink } from 'lucide-react';
+import { ShieldCheck, ArrowLeft, Scale, Building2, Lock, CheckCircle2, AlertCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-export default function TermsOfServicePage() {
+export default function SaasAgreementPage() {
   const lastUpdated = "July 27, 2026";
 
   return (
@@ -12,8 +12,8 @@ export default function TermsOfServicePage() {
       {/* Top Header */}
       <header className="bg-white border-b border-[#E2E5ED] sticky top-0 z-30">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-          <Link 
-            href="/" 
+          <Link
+            href="/"
             className="inline-flex items-center gap-2 text-[13px] font-semibold text-[#402291] hover:text-[#3160B7] transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
@@ -29,7 +29,7 @@ export default function TermsOfServicePage() {
 
       {/* Main Container */}
       <main className="max-w-4xl mx-auto px-4 sm:px-6 py-12 md:py-16">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
@@ -38,28 +38,28 @@ export default function TermsOfServicePage() {
           {/* Document Title Banner */}
           <div className="bg-white border border-[#E2E5ED] rounded-2xl p-6 md:p-8 shadow-xs space-y-3 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#3160B7]/5 rounded-full blur-2xl pointer-events-none" />
-            
+
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#3160B7]/10 text-[#3160B7] text-[12px] font-semibold uppercase tracking-wider">
               <Scale className="w-3.5 h-3.5" />
-              <span>SaaS Master Service Agreement</span>
+              <span>Master Service Agreement</span>
             </div>
 
             <h1 className="font-heading font-bold text-3xl sm:text-4xl text-[#0F172A] tracking-tight">
-              Terms of Service
+              SaaS Agreement Page
             </h1>
 
             <p className="text-[14px] text-[#475467] leading-relaxed max-w-2xl">
-              Terms and conditions governing the use of the Eventclick platform, live video streaming infrastructure, geotagged photo proof engines, and institutional verification services.
+              This Master Service Agreement governs the subscription, use, and operational responsibilities for Eventclick&apos;s institutional verification and live streaming SaaS platform.
             </p>
 
             <div className="pt-2 flex items-center gap-4 text-[12px] text-[#667085] border-t border-[#F1F5F9]">
               <span>Last Updated: <strong className="text-[#0F172A]">{lastUpdated}</strong></span>
               <span>•</span>
-              <span>Service Tier: <strong className="text-[#3160B7]">Institutional & Enterprise SaaS</strong></span>
+              <span>Agreement Type: <strong className="text-[#3160B7]">Institutional & Enterprise SaaS</strong></span>
             </div>
           </div>
 
-          {/* Quick Highlights Grid */}
+          {/* Quick Summary Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="bg-white border border-[#E2E5ED] rounded-xl p-4 space-y-1.5">
               <div className="flex items-center gap-2 text-[#402291] font-semibold text-[13px]">
@@ -92,17 +92,17 @@ export default function TermsOfServicePage() {
             </div>
           </div>
 
-          {/* Terms Content Body */}
+          {/* Body Policy Content */}
           <div className="bg-white border border-[#E2E5ED] rounded-2xl p-6 md:p-10 shadow-xs space-y-8 text-[14px] text-[#334155] leading-relaxed">
-            
+
             {/* Section 1 */}
             <section className="space-y-3">
               <h2 className="font-heading font-semibold text-xl text-[#0F172A] flex items-center gap-2">
                 <span className="w-7 h-7 rounded-lg bg-[#3160B7]/10 text-[#3160B7] flex items-center justify-center text-[13px] font-bold">1</span>
-                <span>Acceptance of Agreement</span>
+                <span>Parties & Scope</span>
               </h2>
               <p>
-                By creating an account, accessing the Eventclick platform, deploying live streaming event rooms, or submitting verification forms, you agree to be legally bound by this Master Service Agreement (&quot;Terms&quot;). If you represent an organization (NGO, CSR foundation, government department, or enterprise), you confirm you hold full legal authority to bind that entity.
+                This Agreement is entered into between Eventclick (Next Venture Community & Enterprise Solutions, herein &quot;Provider&quot;) and the subscribing organization (herein &quot;Customer&quot;). It governs the Customer&apos;s use of the Eventclick SaaS platform, including live event streaming, geotagged photo verification, attendance tracking, and compliance reporting.
               </p>
             </section>
 
@@ -110,17 +110,15 @@ export default function TermsOfServicePage() {
             <section className="space-y-3 pt-4 border-t border-[#F1F5F9]">
               <h2 className="font-heading font-semibold text-xl text-[#0F172A] flex items-center gap-2">
                 <span className="w-7 h-7 rounded-lg bg-[#3160B7]/10 text-[#3160B7] flex items-center justify-center text-[13px] font-bold">2</span>
-                <span>Services Description & Operational Boundaries</span>
+                <span>Subscription & Pricing</span>
               </h2>
               <p>
-                Eventclick provides cloud-based software-as-a-service (SaaS) tools for verifying field event execution, including:
+                Eventclick offers tiered subscriptions based on organizational size, event volume, and feature access. Pricing is determined at the time of subscription and may be subject to annual review. All fees are non-refundable except as expressly provided in this Agreement or as required by applicable law.
               </p>
               <ul className="list-disc pl-6 space-y-2 text-[#475467]">
-                <li>Real-time WebRTC audio/video broadcasting and spectator room management.</li>
-                <li>Geotagged and timestamped camera photo capture for site attendance verification.</li>
-                <li>Automated quality control completion gates and required photo quota evaluations.</li>
-                <li>Role-based access control (RBAC) separating Org Admins, Event Admins, and Field Volunteers.</li>
-                <li>Downloadable compliance audit reports and media archiving.</li>
+                <li>Subscription fees are billed in advance on a monthly or annual basis.</li>
+                <li>Overage charges may apply for storage, streaming minutes, or report generation exceeding plan limits.</li>
+                <li>Prices are subject to change with 30 days&apos; prior notice to the Customer.</li>
               </ul>
             </section>
 
@@ -128,10 +126,27 @@ export default function TermsOfServicePage() {
             <section className="space-y-3 pt-4 border-t border-[#F1F5F9]">
               <h2 className="font-heading font-semibold text-xl text-[#0F172A] flex items-center gap-2">
                 <span className="w-7 h-7 rounded-lg bg-[#3160B7]/10 text-[#3160B7] flex items-center justify-center text-[13px] font-bold">3</span>
-                <span>Acceptable Use & Prohibited Conduct</span>
+                <span>Account Governance & User Management</span>
               </h2>
               <p>
-                You agree to utilize Eventclick strictly for lawful operational verification and donor transparency. You are explicitly prohibited from:
+                The Customer is responsible for:
+              </p>
+              <ul className="list-disc pl-6 space-y-2 text-[#475467]">
+                <li>Maintaining the confidentiality of administrative account credentials.</li>
+                <li>Provisioning and deprovisioning user access in a timely manner.</li>
+                <li>Ensuring that user roles (NGO Admin, Event Admin, Volunteer) are assigned correctly and reflect actual job responsibilities.</li>
+                <li>Notifying Eventclick promptly of any unauthorized access or suspected security incidents.</li>
+              </ul>
+            </section>
+
+            {/* Section 4 */}
+            <section className="space-y-3 pt-4 border-t border-[#F1F5F9]">
+              <h2 className="font-heading font-semibold text-xl text-[#0F172A] flex items-center gap-2">
+                <span className="w-7 h-7 rounded-lg bg-[#3160B7]/10 text-[#3160B7] flex items-center justify-center text-[13px] font-bold">4</span>
+                <span>Acceptable Use & Geotag Integrity</span>
+              </h2>
+              <p>
+                The Customer agrees to use Eventclick strictly for lawful operational verification and donor transparency. Prohibited activities include:
               </p>
               <div className="p-4 bg-[#FEF2F2] border border-[#FCA5A5]/60 rounded-xl space-y-2 text-[13px] text-[#991B1B]">
                 <div className="font-semibold flex items-center gap-2">
@@ -147,28 +162,17 @@ export default function TermsOfServicePage() {
               </div>
             </section>
 
-            {/* Section 4 */}
-            <section className="space-y-3 pt-4 border-t border-[#F1F5F9]">
-              <h2 className="font-heading font-semibold text-xl text-[#0F172A] flex items-center gap-2">
-                <span className="w-7 h-7 rounded-lg bg-[#3160B7]/10 text-[#3160B7] flex items-center justify-center text-[13px] font-bold">4</span>
-                <span>Intellectual Property & Content Ownership</span>
-              </h2>
-              <p>
-                <strong>Client Data Ownership:</strong> Subscribing organizations retain exclusive ownership and copyright over all field photos, beneficiary intake forms, event room video recordings, and audit logs uploaded to or generated by the platform. Eventclick asserts no ownership claim over client evidence data.
-              </p>
-              <p>
-                <strong>Platform IP:</strong> Eventclick retains all rights, title, and interest in and to the platform code, user interface, brand trademarks, and streaming architecture.
-              </p>
-            </section>
-
             {/* Section 5 */}
             <section className="space-y-3 pt-4 border-t border-[#F1F5F9]">
               <h2 className="font-heading font-semibold text-xl text-[#0F172A] flex items-center gap-2">
                 <span className="w-7 h-7 rounded-lg bg-[#3160B7]/10 text-[#3160B7] flex items-center justify-center text-[13px] font-bold">5</span>
-                <span>Service Level Agreement (SLA) & Availability</span>
+                <span>Intellectual Property & Data Ownership</span>
               </h2>
               <p>
-                Eventclick targets a 99.9% monthly uptime SLA for live video broadcasting and API endpoint access. Scheduled maintenance windows are communicated at least 48 hours in advance and executed outside peak field event hours.
+                <strong>Client Data Ownership:</strong> The Customer retains exclusive ownership and copyright over all field photos, beneficiary intake forms, event room video recordings, and audit logs uploaded to or generated by the platform. Eventclick asserts no ownership claim over Customer evidence data.
+              </p>
+              <p>
+                <strong>Platform IP:</strong> Eventclick retains all rights, title, and interest in and to the platform code, user interface, brand trademarks, and streaming architecture.
               </p>
             </section>
 
@@ -176,50 +180,55 @@ export default function TermsOfServicePage() {
             <section className="space-y-3 pt-4 border-t border-[#F1F5F9]">
               <h2 className="font-heading font-semibold text-xl text-[#0F172A] flex items-center gap-2">
                 <span className="w-7 h-7 rounded-lg bg-[#3160B7]/10 text-[#3160B7] flex items-center justify-center text-[13px] font-bold">6</span>
-                <span>Enterprise Agreements</span>
+                <span>Service Level Agreement (SLA)</span>
               </h2>
               <p>
-                For enterprise customers requiring more detailed contractual terms, the following supplementary agreements are available:
+                Eventclick targets a 99.9% monthly uptime SLA for live video broadcasting and API endpoint access. Scheduled maintenance windows are communicated at least 48 hours in advance and executed outside peak field event hours. Service credits are available in accordance with the standalone SLA document.
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="p-4 bg-[#F5F3FC] border border-[#8C6FCF]/20 rounded-xl text-[13px] text-[#402291]">
-                  <p className="font-semibold">📄 SaaS Agreement</p>
-                  <p className="text-[#475467] mt-1">
-                    Detailed master service agreement covering subscription terms, account governance, support, and change management.
-                  </p>
-                  <Link href="/saas-agreement" className="inline-flex items-center gap-1.5 mt-2 text-[#402291] font-semibold hover:underline">
-                    <span>View SaaS Agreement</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
-                <div className="p-4 bg-[#F5F3FC] border border-[#8C6FCF]/20 rounded-xl text-[13px] text-[#402291]">
-                  <p className="font-semibold">📊 Service Level Agreement</p>
-                  <p className="text-[#475467] mt-1">
-                    Performance standards, uptime commitments, support response times, and service credit policies.
-                  </p>
-                  <Link href="/sla" className="inline-flex items-center gap-1.5 mt-2 text-[#402291] font-semibold hover:underline">
-                    <span>View SLA</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
-              </div>
             </section>
 
             {/* Section 7 */}
             <section className="space-y-3 pt-4 border-t border-[#F1F5F9]">
               <h2 className="font-heading font-semibold text-xl text-[#0F172A] flex items-center gap-2">
                 <span className="w-7 h-7 rounded-lg bg-[#3160B7]/10 text-[#3160B7] flex items-center justify-center text-[13px] font-bold">7</span>
+                <span>Limitation of Liability & Indemnification</span>
+              </h2>
+              <p>
+                To the maximum extent permitted by applicable law, Eventclick shall not be liable for indirect, incidental, consequential, or punitive damages resulting from field connectivity interruptions, cellular network degradation, or unauthorized account access due to Customer credential compromise. Eventclick&apos;s total liability under this Agreement shall not exceed the total fees paid by the Customer during the 12 months preceding the claim.
+              </p>
+            </section>
+
+            {/* Section 8 */}
+            <section className="space-y-3 pt-4 border-t border-[#F1F5F9]">
+              <h2 className="font-heading font-semibold text-xl text-[#0F172A] flex items-center gap-2">
+                <span className="w-7 h-7 rounded-lg bg-[#3160B7]/10 text-[#3160B7] flex items-center justify-center text-[13px] font-bold">8</span>
                 <span>Governing Law & Dispute Resolution</span>
               </h2>
               <p>
-                This agreement shall be governed by and construed in accordance with the laws of the state of jurisdiction, without regard to conflict of law principles. Any legal disputes shall be resolved through binding arbitration.
+                This Agreement shall be governed by and construed in accordance with the laws of the jurisdiction in which the Customer entity is registered, without regard to conflict of law principles. Any legal disputes shall be resolved through binding arbitration or mediation before escalation to competent courts.
               </p>
+            </section>
+
+            {/* Section 9 */}
+            <section className="space-y-3 pt-4 border-t border-[#F1F5F9]">
+              <h2 className="font-heading font-semibold text-xl text-[#0F172A] flex items-center gap-2">
+                <span className="w-7 h-7 rounded-lg bg-[#3160B7]/10 text-[#3160B7] flex items-center justify-center text-[13px] font-bold">9</span>
+                <span>Contact & Notices</span>
+              </h2>
+              <p>
+                Legal notices, contract amendments, and SLA communications should be directed to:
+              </p>
+              <div className="p-4 bg-[#F5F3FC] border border-[#8C6FCF]/20 rounded-xl text-[13px] text-[#402291] space-y-1 font-mono">
+                <p><strong>Email:</strong> legal@eventclick.live</p>
+                <p><strong>Security Portal:</strong> https://eventclick.live/security</p>
+                <p><strong>Response Time:</strong> Within 3 business days for contract matters.</p>
+              </div>
             </section>
 
           </div>
 
           <div className="text-center pt-4">
-            <Link 
+            <Link
               href="/"
               className="px-6 py-2.5 bg-[#402291] text-white font-medium text-[13px] rounded-xl hover:bg-[#3160B7] transition-all inline-flex items-center gap-2"
             >

@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ShieldCheck, ArrowLeft, Lock, FileText, CheckCircle2, Clock, Eye, Server, UserCheck } from 'lucide-react';
+import { ShieldCheck, ArrowLeft, Lock, FileText, CheckCircle2, Clock, Eye, Server, UserCheck, ExternalLink } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function PrivacyPolicyPage() {
@@ -186,14 +186,35 @@ export default function PrivacyPolicyPage() {
             <section className="space-y-3 pt-4 border-t border-[#F1F5F9]">
               <h2 className="font-heading font-semibold text-xl text-[#0F172A] flex items-center gap-2">
                 <span className="w-7 h-7 rounded-lg bg-[#402291]/10 text-[#402291] flex items-center justify-center text-[13px] font-bold">6</span>
+                <span>Enterprise Data Processing Agreement</span>
+              </h2>
+              <p>
+                For enterprise customers and EU data controllers requiring a formal Data Processing Agreement under GDPR Article 28, please review our dedicated DPA:
+              </p>
+              <div className="p-4 bg-[#F5F3FC] border border-[#8C6FCF]/20 rounded-xl text-[13px] text-[#402291]">
+                <p className="font-semibold">📋 GDPR & Data Framework Page</p>
+                <p className="text-[#475467] mt-1">
+                  Defines controller/processor roles, subprocessor list, data transfer safeguards, and data subject rights assistance procedures.
+                </p>
+                <Link href="/gdpr-dpa" className="inline-flex items-center gap-1.5 mt-2 text-[#402291] font-semibold hover:underline">
+                  <span>View DPA</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+            </section>
+
+            {/* Section 7 */}
+            <section className="space-y-3 pt-4 border-t border-[#F1F5F9]">
+              <h2 className="font-heading font-semibold text-xl text-[#0F172A] flex items-center gap-2">
+                <span className="w-7 h-7 rounded-lg bg-[#402291]/10 text-[#402291] flex items-center justify-center text-[13px] font-bold">7</span>
                 <span>Contact Our Data Protection Officer</span>
               </h2>
               <p>
                 If you have questions regarding this Privacy Policy or wish to exercise data subject rights, contact our security team:
               </p>
               <div className="p-4 bg-[#F5F3FC] border border-[#8C6FCF]/20 rounded-xl text-[13px] text-[#402291] space-y-1 font-mono">
-                <p><strong>Email:</strong> privacy@eventclick.org</p>
-                <p><strong>Security Portal:</strong> https://eventclick.org/security</p>
+                <p><strong>Email:</strong> privacy@eventclick.live</p>
+                <p><strong>Security Portal:</strong> https://eventclick.live/security</p>
                 <p><strong>Response Time:</strong> Within 24 business hours</p>
               </div>
             </section>

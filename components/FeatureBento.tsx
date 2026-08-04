@@ -22,8 +22,29 @@ import {
   FileCheck2
 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function FeatureBento() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const scroll = (dir: 1 | -1) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    el.scrollBy({ left: dir * el.clientWidth * 0.85, behavior: 'smooth' });
+  };
+
+  const mobileCards = [
+    { icon: Video, grad: 'from-[#402291] to-[#3160B7]', badge: 'Real-Time Video', badgeBg: 'bg-[#F5F3FC]', badgeText: 'text-[#402291]', title: 'Ultra-Low Latency Live Field Video', desc: 'Sub-second WebRTC streaming with automated broadcast failover for stakeholders.' },
+    { icon: Camera, grad: 'from-[#EC4899] to-[#BE185D]', badge: 'Verification', badgeBg: 'bg-[#FCE7F3]', badgeText: 'text-[#BE185D]', title: 'Geotagged Photo Proof', desc: 'Live camera capture verified against GPS coordinates and time windows.' },
+    { icon: CheckSquare, grad: 'from-[#06B6D4] to-[#0891B2]', badge: 'Quality Control', badgeBg: 'bg-[#CFFAFE]', badgeText: 'text-[#0891B2]', title: 'Automated Completion Gates', desc: 'Photo quotas and checklists that gate event completion sign-offs.' },
+    { icon: Tv2, grad: 'from-[#6366F1] to-[#4338CA]', badge: 'Reliability', badgeBg: 'bg-[#E0E7FF]', badgeText: 'text-[#4338CA]', title: 'Redundant Failover Engine', desc: 'Automated backup streams prevent blackouts during peak operations.' },
+    { icon: Users2, grad: 'from-[#10B981] to-[#047857]', badge: 'Analytics', badgeBg: 'bg-[#DCFCE7]', badgeText: 'text-[#047857]', title: 'Live Audience Analytics', desc: 'Track spectator presence and check-ins live across all active rooms.' },
+    { icon: ShieldCheck, grad: 'from-[#A855F7] to-[#7E22CE]', badge: 'Governance', badgeBg: 'bg-[#F3E8FF]', badgeText: 'text-[#7E22CE]', title: 'Role-Based Access Control', desc: 'Multi-tier governance across Executives, Coordinators, and Volunteers.' },
+    { icon: HardDriveDownload, grad: 'from-[#F59E0B] to-[#D97706]', badge: 'Archiving', badgeBg: 'bg-[#FEF3C7]', badgeText: 'text-[#D97706]', title: 'Automated Stream Archival', desc: 'Automatic recording for compliance reports and marketing collateral.' },
+    { icon: Lock, grad: 'from-[#EF4444] to-[#DC2626]', badge: 'Data Security', badgeBg: 'bg-[#FEF2F2]', badgeText: 'text-[#DC2626]', title: 'Privacy-Guaranteed Storage', desc: 'Time-bound encrypted links protect sensitive participant data.' },
+    { icon: Award, grad: 'from-[#8C6FCF] to-[#4C1D95]', dark: true, title: 'Built for NGOs & CSR Leaders', desc: 'Indisputable field evidence, automated reporting, enterprise-grade protection.' },
+  ];
+  
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -83,7 +104,7 @@ export default function FeatureBento() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-5 md:gap-6 max-w-6xl mx-auto"
+          className="hidden lg:grid lg:grid-cols-12 gap-5 md:gap-6 max-w-6xl mx-auto"
         >
           
           {/* Bento Card 1: Live Event Video Broadcasting (Span 8) */}
@@ -467,8 +488,38 @@ export default function FeatureBento() {
               </div>
             </div>
           </motion.div>
-
         </motion.div>
+
+                {/* Mobile/Tablet: Apple-style horizontal scroll cards */}
+        <div className="lg:hidden">
+          <div
+            ref={scrollRef}
+            className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          >
+            {mobileCards.map((c, i) => (
+              <div key={i} className={`shrink-0 w-[82%] sm:w-[55%] snap-center rounded-2xl p-6 shadow-2xs border ${c.dark ? 'bg-gradient-to-r from-[#1E1B4B] to-[#4C1D95] border-transparent text-white' : 'bg-white/90 border-[#E2E5ED]'}`}>
+                <div className="flex items-center justify-between mb-4">
+                  <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${c.grad} flex items-center justify-center text-white shadow-sm`}>
+                    <c.icon className="w-5 h-5 stroke-[2.2]" />
+                  </div>
+                  {!c.dark && <span className={`text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-md ${c.badgeBg} ${c.badgeText}`}>{c.badge}</span>}
+                </div>
+                <h3 className={`font-heading font-semibold text-lg mb-1.5 ${c.dark ? 'text-white' : 'text-[#0F172A]'}`}>{c.title}</h3>
+                <p className={`text-[14px] leading-relaxed ${c.dark ? 'text-white/80' : 'text-[#475467]'}`}>{c.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Prev/Next controls, bottom-left */}
+          <div className="flex items-center gap-2 mt-4">
+            <button onClick={() => scroll(-1)} aria-label="Previous" className="w-9 h-9 rounded-full bg-white border border-[#E2E5ED] shadow-xs flex items-center justify-center text-[#402291] active:scale-95 transition-transform">
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button onClick={() => scroll(1)} aria-label="Next" className="w-9 h-9 rounded-full bg-white border border-[#E2E5ED] shadow-xs flex items-center justify-center text-[#402291] active:scale-95 transition-transform">
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
 
       </div>
     </section>
