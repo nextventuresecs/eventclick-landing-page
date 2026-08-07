@@ -162,16 +162,13 @@ export default function Navbar({ onOpenDemo }: NavbarProps) {
               ))}
 
               <div className="pt-3 border-t border-[#E2E5ED] flex flex-col gap-2.5">
-                <button
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    onOpenDemo();
-                  }}
+                <Link
+                  href="https://app.eventclick.live/"
                   className="w-full py-2.5 text-center text-[14px] font-semibold text-[#402291] bg-[#F5F3FC] hover:bg-[#EAE4F8] rounded-xl flex items-center justify-center gap-2 border border-[#8C6FCF]/20"
                 >
                   <LogIn className="w-4 h-4 text-[#402291]" />
                   <span>Log in</span>
-                </button>
+                </Link>
 
                 <button
                   onClick={() => {
