@@ -19,12 +19,15 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import { submitContactRequest, ContactSubmitError } from '@/lib/contact';
 
 export default function ContactPageClient() {
   const [demoOpen, setDemoOpen] = useState(false);
   const [selectedRoomId, setSelectedRoomId] = useState<string | null>(null);
   
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     fullName: '',
     workEmail: '',
@@ -34,9 +37,24 @@ export default function ContactPageClient() {
     consentGiven: false
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setError(null);
+    setSubmitting(true);
+    try {
+      await submitContactRequest({ kind: 'support', ...formData });
+      setSubmitted(true);
+    } catch (err) {
+      // The success state is reached only on an accepted request — this form
+      // previously showed it unconditionally, sending nothing.
+      setError(
+        err instanceof ContactSubmitError
+          ? err.message
+          : 'Something went wrong. Please try again.'
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -272,13 +290,23 @@ export default function ContactPageClient() {
                             </label>
                           </div>
 
+                          {error && (
+                            <div
+                              role="alert"
+                              className="px-3.5 py-3 rounded-xl bg-[#FEF2F2] border border-[#FECACA] text-[13px] text-[#B42318]"
+                            >
+                              {error}
+                            </div>
+                          )}
+
                           {/* Submit */}
                           <div className="pt-2">
                             <button
                               type="submit"
-                              className="w-full py-3.5 text-[15px] font-bold text-white rounded-xl bg-gradient-to-r from-[#402291] to-[#3160B7] shadow-lg shadow-[#402291]/25 hover:shadow-xl hover:shadow-[#402291]/35 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
+                              disabled={submitting}
+                              className="w-full py-3.5 text-[15px] font-bold text-white rounded-xl bg-gradient-to-r from-[#402291] to-[#3160B7] shadow-lg shadow-[#402291]/25 hover:shadow-xl hover:shadow-[#402291]/35 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0"
                             >
-                              <span>Send Message</span>
+                              <span>{submitting ? 'Sending…' : 'Send Message'}</span>
                               <Send className="w-4 h-4 ml-1" />
                             </button>
                           </div>

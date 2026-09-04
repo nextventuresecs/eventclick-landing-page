@@ -18,6 +18,7 @@ import {
   ArrowRight
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { submitContactRequest, ContactSubmitError } from '@/lib/contact';
 
 interface DemoModalProps {
   isOpen: boolean;
@@ -28,6 +29,8 @@ interface DemoModalProps {
 export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
   const [activeTab, setActiveTab] = useState<'request_demo' | 'video_tour'>('request_demo');
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [isPlayingVideo, setIsPlayingVideo] = useState(false);
 
   // Form State
@@ -41,13 +44,29 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setError(null);
+    setSubmitting(true);
+    try {
+      await submitContactRequest({ kind: 'demo', ...formData });
+      setSubmitted(true);
+    } catch (err) {
+      // Only show the success screen once the request is actually accepted —
+      // this form previously reported success without sending anything.
+      setError(
+        err instanceof ContactSubmitError
+          ? err.message
+          : 'Something went wrong. Please try again.'
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const resetForm = () => {
     setSubmitted(false);
+    setError(null);
     setFormData({
       fullName: '',
       workEmail: '',
@@ -247,13 +266,23 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                     </div>
 
                     {/* Submit Action */}
+                    {error && (
+                      <div
+                        role="alert"
+                        className="px-3.5 py-3 rounded-xl bg-[#FEF2F2] border border-[#FECACA] text-[13px] text-[#B42318]"
+                      >
+                        {error}
+                      </div>
+                    )}
+
                     <div className="pt-2">
                       <button
                         type="submit"
-                        className="group w-full py-3.5 text-[14px] font-bold text-white rounded-xl bg-gradient-to-r from-[#402291] via-[#382080] to-[#3160B7] shadow-lg shadow-[#402291]/25 hover:shadow-xl hover:shadow-[#402291]/35 hover:scale-[1.01] active:scale-[0.99] transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer border border-white/20"
+                        disabled={submitting}
+                        className="group w-full py-3.5 text-[14px] font-bold text-white rounded-xl bg-gradient-to-r from-[#402291] via-[#382080] to-[#3160B7] shadow-lg shadow-[#402291]/25 hover:shadow-xl hover:shadow-[#402291]/35 hover:scale-[1.01] active:scale-[0.99] transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer border border-white/20 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
                       >
                         <Sparkles className="w-4 h-4 text-[#A78BFA] group-hover:rotate-12 transition-transform" />
-                        <span>Book Personalized Demo</span>
+                        <span>{submitting ? 'Sending…' : 'Book Personalized Demo'}</span>
                         <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </button>
                     </div>
